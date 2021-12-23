@@ -21,7 +21,7 @@ jobs:
     runs-on: [self-hosted, builddocker] 
     steps:
     - name: Publish Portfolio RPM
-      uses: croesusfin/action-publish-rpm-devarch@v1-beta
+      uses: croesusfin/action-publish-rpm-devarch@v1
       with:
         project-name: Portfolio
         version: 8.8.9-88245_pf1234
