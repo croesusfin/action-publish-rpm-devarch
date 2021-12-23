@@ -23,7 +23,7 @@ jobs:
     - name: Publish Portfolio RPM
       uses: croesusfin/action-publish-rpm-devarch@v1
       with:
-        project-name: Portfolio
+        project-name: CroesusComponents/Portfolio
         version: 8.8.9-88245_pf1234
         rpm-artifact-name: portfolio-rpm
         devarch-user: superuser1
