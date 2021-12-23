@@ -1,0 +1,64 @@
+name: 'Publish RPM to devarch'
+
+description: >
+  Publish RPM to devarch using SFTP protocol. 
+  This action must be run on builddocker to be functional.
+  This will transfer the RPM to this path: 
+  /data/archives/{project-name}/{version}/rpm
+
+inputs:
+  project-name:  
+    required: true
+    description: > 
+      Project name on devarch.
+      This will be translated into `/data/archives/{project-name}`
+      If the path does not exist, the action will fail.
+
+  version:
+    required: true
+    description: >
+      Version for the folder on devarch.
+      This will be translated into `/data/archives/{project-name}/{version}`
+      If this path exist, the action will fail to prevent overwriting existing RPM.
+
+  rpm-artifact-name:
+    required: true
+    description: 'Name of the artifact containing the RPM.'
+
+  devarch-user:
+    required: true
+    description: 'Name of the user to be use to connect to devarch with SFTP.'
+
+runs:
+  using: composite
+
+  steps:
+    - name: Download RPM
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.rpm-artifact-name }}
+        path: new-rpm
+    
+    - name: Generate SFTP commands
+      # Generate the commands to be executed on SFTP
+      # Explicit mkdir validate that the version does not already exists
+      # This will prevent overwriting existing rpm
+      run: |
+        (
+          echo "mkdir ${{ inputs.version }}";
+          echo "cd ${{ inputs.version }}";
+          echo "mkdir rpm";
+          echo "cd rpm";
+          echo "put ./new-rpm/*";
+          echo "ls -l";
+          echo "exit"
+        ) > sftp-command.txt
+      shell: bash
+
+    - name: Transfer to Devarch
+      # Use SFTP using the command file generate on the previous step 
+      # builddocker MUST have the credentials to connect to ${{ inputs.devarch-user }}@devarch
+      # Assume that the folder /data/archives/${{ inputs.project-name }} already exist
+      # The upload will fail otherwise
+      run: sftp -b sftp-command.txt ${{ inputs.devarch-user }}@devarch:/data/archives/${{ inputs.project-name }}
+      shell: bash
