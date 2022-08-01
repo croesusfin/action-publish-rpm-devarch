@@ -21,6 +21,14 @@ inputs:
       This will be translated into `/data/archives/{project-name}/{version}`
       If this path exist, the action will fail to prevent overwriting existing RPM.
 
+  create-rpm-directory:
+    required: false
+    default: "true"
+    description: >
+      Boolean that specifies if a 'rpm' folder must be created.
+      If set to false, this will be translated into `/data/archives/{project-name}/{version}`
+      If set to true, this will be translated into `/data/archives/{project-name}/{version}/rpm`
+
   rpm-artifact-name:
     required: true
     description: 'Name of the artifact containing the RPM.'
@@ -47,8 +55,10 @@ runs:
         (
           echo "mkdir ${{ inputs.version }}";
           echo "cd ${{ inputs.version }}";
-          echo "mkdir rpm";
-          echo "cd rpm";
+          if [ ${{ inputs.create-rpm-directory }} == "true" ]; then
+            echo "mkdir rpm";
+            echo "cd rpm";
+          fi
           echo "put ./new-rpm/*";
           echo "ls -l";
           echo "exit"
