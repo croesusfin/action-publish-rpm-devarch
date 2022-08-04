@@ -5,6 +5,7 @@ description: >
   This action must be run on builddocker to be functional.
   This will transfer the RPM to this path: 
   /data/archives/{project-name}/{version}/rpm
+  (unless the inputs `override-existing-version` and `create-rpm-directory` are set)
 
 inputs:
   project-name:  
@@ -29,6 +30,22 @@ inputs:
     required: true
     description: 'Name of the user to be use to connect to devarch with SFTP.'
 
+  override-existing-version:
+    required: false
+    default: "false"
+    description: >
+      Boolean that specifies if we should overwrite the RPM
+      If set to false, the action will fail if the {version} folder already exists
+      If set to true, the action won't fail if the {version} folder already exists and the RPM will be replaced.
+
+  create-rpm-directory:
+    required: false
+    default: "true"
+    description: >
+      Boolean that specifies if a 'rpm' folder must be created.
+      If set to false, this will be translated into `/data/archives/{project-name}/{version}`
+      If set to true, this will be translated into `/data/archives/{project-name}/{version}/rpm`.
+
 runs:
   using: composite
 
@@ -45,10 +62,14 @@ runs:
       # This will prevent overwriting existing rpm
       run: |
         (
-          echo "mkdir ${{ inputs.version }}";
+          if [ ${{ inputs.override-existing-version }} == "false" ]; then
+            echo "mkdir ${{ inputs.version }}"
+          fi
           echo "cd ${{ inputs.version }}";
-          echo "mkdir rpm";
-          echo "cd rpm";
+          if [ ${{ inputs.create-rpm-directory }} == "true" ]; then
+            echo "mkdir rpm";
+            echo "cd rpm";
+          fi
           echo "put ./new-rpm/*";
           echo "ls -l";
           echo "exit"
