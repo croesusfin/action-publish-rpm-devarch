@@ -1,0 +1,20 @@
+{
+  "name": "action-publish-rpm-devarch",
+  "version": "2.0.0-update-add-semantic-54440e9.1",
+  "description": "Action GitHub to publish an RPM on DevArch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/croesusfin/action-publish-rpm-devarch.git"
+  },
+  "homepage": "https://github.com/croesusfin/action-publish-rpm-devarch#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-angular": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^9.0.2",
+    "semantic-release": "^20.1.0"
+  }
+}
