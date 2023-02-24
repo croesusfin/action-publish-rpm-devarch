@@ -21,7 +21,7 @@ jobs:
     runs-on: [self-hosted, builddocker] 
     steps:
     - name: Publish Portfolio RPM
-      uses: croesusfin/action-publish-rpm-devarch@v1
+      uses: croesusfin/action-publish-rpm-devarch@v2
       with:
         project-name: CroesusComponents/Portfolio
         version: 8.8.9-88245_pf1234
@@ -53,8 +53,8 @@ See [action.yml](./action.yaml).
 
 Feel free to open a pull request!
 
-- [CONTRIBUTING.md](./CONTRIBUTING.md)
-- [PULL_REQUESTS.md](./PULL_REQUESTS.md)
+- [CONTRIBUTING.md](https://github.com/croesusfin/tech-docs/blob/main/Semantic%20Release/CONTRIBUTING.md)
+- [PULL_REQUESTS.md](https://github.com/croesusfin/tech-docs/blob/main/Semantic%20Release/PULL_REQUESTS.md)
 
 ## How to release
 
