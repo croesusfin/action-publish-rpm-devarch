@@ -1,6 +1,6 @@
 {
   "name": "action-publish-rpm-devarch",
-  "version": "2.0.0-update-add-semantic-54440e9.1",
+  "version": "2.0.0",
   "description": "Action GitHub to publish an RPM on DevArch",
   "repository": {
     "type": "git",
