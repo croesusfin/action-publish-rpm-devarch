@@ -1,6 +1,6 @@
 {
   "name": "action-publish-rpm-devarch",
-  "version": "2.0.1-bump-actions-download-artifact-db292f5.1",
+  "version": "2.0.1",
   "description": "Action GitHub to publish an RPM on DevArch",
   "repository": {
     "type": "git",
