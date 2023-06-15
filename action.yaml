@@ -64,6 +64,8 @@ runs:
         (
           if [ ${{ inputs.override-existing-version }} == "false" ]; then
             echo "mkdir ${{ inputs.version }}"
+          else
+            echo "mkdir -p ${{ inputs.version }}"
           fi
           echo "cd ${{ inputs.version }}";
           if [ ${{ inputs.create-rpm-directory }} == "true" ]; then
