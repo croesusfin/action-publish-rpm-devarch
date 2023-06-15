@@ -1,6 +1,6 @@
 {
   "name": "action-publish-rpm-devarch",
-  "version": "2.0.1",
+  "version": "2.1.0-override-existing-d2de348.1",
   "description": "Action GitHub to publish an RPM on DevArch",
   "repository": {
     "type": "git",
