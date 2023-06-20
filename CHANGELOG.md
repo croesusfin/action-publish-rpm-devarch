@@ -1,5 +1,12 @@
 # Changelogs
 
+## [2.1.1](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.1.0...v2.1.1) (2023-06-20)
+
+
+### Bug Fixes
+
+* clean up before download artifact ([#10](https://croesus-support.atlassian.net/browse/10)) ([9a9d5c6](https://github.com/croesusfin/action-publish-rpm-devarch/commit/9a9d5c63add6ac983e4601211a8d4a6807087f4f))
+
 ## [2.1.0](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.0.1...v2.1.0) (2023-06-20)
 
 
