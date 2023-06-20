@@ -50,6 +50,11 @@ runs:
   using: composite
 
   steps:
+    - name: Clean up
+      shell: bash
+      run: |
+        /bin/rm -r new-rpm/*
+
     - name: Download RPM
       uses: actions/download-artifact@v3
       with:
