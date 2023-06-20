@@ -1,5 +1,12 @@
 # Changelogs
 
+## [2.1.0](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.0.1...v2.1.0) (2023-06-20)
+
+
+### Features
+
+* don't crash on missing folder ([#9](https://croesus-support.atlassian.net/browse/9)) ([f4f2ed5](https://github.com/croesusfin/action-publish-rpm-devarch/commit/f4f2ed5fc7fc6d7267b655df446315006d883d25))
+
 ## [2.0.1](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.0.0...v2.0.1) (2023-03-29)
 
 
