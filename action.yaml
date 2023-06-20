@@ -58,16 +58,18 @@ runs:
     
     - name: Generate SFTP commands
       # Generate the commands to be executed on SFTP
-      # Explicit mkdir validate that the version does not already exists
-      # This will prevent overwriting existing rpm
       run: |
         (
-          if [ ${{ inputs.override-existing-version }} == "false" ]; then
-            echo "mkdir ${{ inputs.version }}"
-          fi
+          echo "mkdir ${{ inputs.version }}"
           echo "cd ${{ inputs.version }}";
           if [ ${{ inputs.create-rpm-directory }} == "true" ]; then
             echo "mkdir rpm";
+          fi
+        ) > mkdir.txt
+
+        (
+          echo "cd ${{ inputs.version }}";
+          if [ ${{ inputs.create-rpm-directory }} == "true" ]; then
             echo "cd rpm";
           fi
           echo "put ./new-rpm/*";
@@ -77,9 +79,20 @@ runs:
       shell: bash
 
     - name: Transfer to Devarch
-      # Use SFTP using the command file generate on the previous step 
+      # Use SFTP using the command files generated on the previous step 
       # builddocker MUST have the credentials to connect to ${{ inputs.devarch-user }}@devarch
       # Assume that the folder /data/archives/${{ inputs.project-name }} already exist
       # The upload will fail otherwise
-      run: sftp -b sftp-command.txt ${{ inputs.devarch-user }}@devarch:/data/archives/${{ inputs.project-name }}
+      run: | 
+        # By default, this first command will fail if the version already exists
+        # but not if override-existing-version is true
+        # it's ugly because sftp doesn't have commands to create directory only if does not exists
+        if [ ${{ inputs.override-existing-version }} == "false" ]; then
+          sftp -b mkdir.txt ${{ inputs.devarch-user }}@devarch:/data/archives/${{ inputs.project-name }}
+        else
+          sftp -b mkdir.txt ${{ inputs.devarch-user }}@devarch:/data/archives/${{ inputs.project-name }} || true
+        fi
+
+        sftp -b sftp-command.txt ${{ inputs.devarch-user }}@devarch:/data/archives/${{ inputs.project-name }}
+
       shell: bash
