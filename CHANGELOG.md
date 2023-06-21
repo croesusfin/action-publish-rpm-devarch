@@ -1,5 +1,12 @@
 # Changelogs
 
+## [2.1.2](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.1.1...v2.1.2) (2023-06-21)
+
+
+### Bug Fixes
+
+* force cleanup ([75f541f](https://github.com/croesusfin/action-publish-rpm-devarch/commit/75f541f6a0050ce5158afa2e03d541eb7e61848a))
+
 ## [2.1.1](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.1.0...v2.1.1) (2023-06-20)
 
 
