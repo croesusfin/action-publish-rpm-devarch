@@ -53,7 +53,7 @@ runs:
     - name: Clean up
       shell: bash
       run: |
-        /bin/rm -r new-rpm/*
+        /bin/rm -r -f new-rpm/*
 
     - name: Download RPM
       uses: actions/download-artifact@v3
