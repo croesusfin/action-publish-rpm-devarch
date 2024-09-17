@@ -1,6 +1,6 @@
 {
   "name": "action-publish-rpm-devarch",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Action GitHub to publish an RPM on DevArch",
   "repository": {
     "type": "git",

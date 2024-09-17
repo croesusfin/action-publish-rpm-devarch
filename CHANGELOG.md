@@ -1,5 +1,12 @@
 # Changelogs
 
+## [2.1.3](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.1.2...v2.1.3) (2024-09-17)
+
+
+### Bug Fixes
+
+* update deprecated actions ([#12](https://croesus-support.atlassian.net/browse/12)) ([34fee27](https://github.com/croesusfin/action-publish-rpm-devarch/commit/34fee27a5c28d73c92bb445635682fa7b7cad2af))
+
 ## [2.1.2](https://github.com/croesusfin/action-publish-rpm-devarch/compare/v2.1.1...v2.1.2) (2023-06-21)
 
 
