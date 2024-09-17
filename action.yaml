@@ -56,7 +56,7 @@ runs:
         /bin/rm -r -f new-rpm/*
 
     - name: Download RPM
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: ${{ inputs.rpm-artifact-name }}
         path: new-rpm
